@@ -1,20 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
   color-scheme: dark;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: #07090d;
-  color: #f6eddc;
-  --ink: #07090d;
-  --midnight: #101722;
-  --midnight-soft: rgba(20, 30, 43, 0.78);
-  --gold: #caa76a;
-  --gold-bright: #e1c28a;
-  --gold-muted: rgba(202, 167, 106, 0.18);
-  --parchment: #f6eddc;
-  --mist: rgba(246, 237, 220, 0.72);
-  --line: rgba(202, 167, 106, 0.24);
-  --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+  background: #05070b;
+  color: #f8ecd4;
+  --ink: #05070b;
+  --ink-blue: #09111c;
+  --midnight: #111a27;
+  --midnight-soft: rgba(16, 25, 38, 0.78);
+  --gold: #c8a15e;
+  --gold-bright: #f0cf8b;
+  --gold-deep: #7e5b2d;
+  --parchment: #f8ecd4;
+  --mist: rgba(248, 236, 212, 0.74);
+  --muted: rgba(248, 236, 212, 0.52);
+  --line: rgba(200, 161, 94, 0.25);
+  --line-soft: rgba(248, 236, 212, 0.09);
+  --glass: rgba(255, 255, 255, 0.055);
+  --shadow: 0 30px 100px rgba(0, 0, 0, 0.58);
 }
 
 * {
@@ -30,11 +34,10 @@ body {
   margin: 0;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 22% 12%, rgba(202, 167, 106, 0.18), transparent 24rem),
-    radial-gradient(circle at 80% 4%, rgba(112, 138, 163, 0.18), transparent 22rem),
-    linear-gradient(135deg, rgba(202, 167, 106, 0.06) 0 1px, transparent 1px 48px),
-    linear-gradient(45deg, rgba(202, 167, 106, 0.05) 0 1px, transparent 1px 58px),
-    #07090d;
+    radial-gradient(circle at 50% -18%, rgba(240, 207, 139, 0.16), transparent 32rem),
+    radial-gradient(circle at 16% 16%, rgba(62, 86, 106, 0.32), transparent 28rem),
+    radial-gradient(circle at 86% 8%, rgba(125, 91, 45, 0.22), transparent 24rem),
+    linear-gradient(180deg, #05070b 0%, #08101a 42%, #05070b 100%);
 }
 
 body::before,
@@ -46,16 +49,21 @@ body::after {
 }
 
 body::before {
-  opacity: 0.38;
+  opacity: 0.46;
   background-image:
-    radial-gradient(circle, rgba(246, 237, 220, 0.82) 0 1px, transparent 1.4px),
-    radial-gradient(circle, rgba(202, 167, 106, 0.68) 0 1px, transparent 1.5px);
-  background-position: 12px 18px, 65px 95px;
-  background-size: 116px 116px, 172px 172px;
+    linear-gradient(rgba(200, 161, 94, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 161, 94, 0.07) 1px, transparent 1px),
+    radial-gradient(circle, rgba(248, 236, 212, 0.8) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(240, 207, 139, 0.62) 0 1px, transparent 1.4px);
+  background-position: center, center, 14px 28px, 72px 96px;
+  background-size: 72px 72px, 72px 72px, 122px 122px, 190px 190px;
+  mask-image: radial-gradient(ellipse at center, black 0 58%, transparent 92%);
 }
 
 body::after {
-  background: radial-gradient(ellipse at center, transparent 0%, rgba(7, 9, 13, 0.28) 56%, rgba(7, 9, 13, 0.86) 100%);
+  background:
+    radial-gradient(ellipse at 50% 22%, transparent 0%, rgba(5, 7, 11, 0.18) 44%, rgba(5, 7, 11, 0.78) 100%),
+    linear-gradient(90deg, rgba(5, 7, 11, 0.55), transparent 24%, transparent 76%, rgba(5, 7, 11, 0.55));
 }
 
 button,
@@ -71,62 +79,231 @@ a {
 .site-shell {
   position: relative;
   z-index: 1;
-  width: min(1120px, calc(100% - 32px));
+  width: min(1200px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 32px 0 56px;
+  padding: 28px 0 56px;
 }
 
-.section-panel {
+.hero,
+.section-panel,
+.atlas-card {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 28px;
-  background:
-    linear-gradient(145deg, rgba(16, 23, 34, 0.9), rgba(8, 12, 18, 0.78)),
-    var(--midnight-soft);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
 }
 
-.section-panel::before {
+.hero {
+  min-height: 92svh;
+  display: grid;
+  align-items: end;
+  border-radius: 34px;
+  padding: clamp(28px, 6vw, 78px);
+  isolation: isolate;
+  background:
+    linear-gradient(180deg, rgba(5, 7, 11, 0.1), rgba(5, 7, 11, 0.72)),
+    radial-gradient(circle at 26% 28%, rgba(240, 207, 139, 0.14), transparent 18rem),
+    linear-gradient(145deg, rgba(14, 25, 38, 0.94), rgba(4, 7, 12, 0.9));
+}
+
+.hero::before,
+.hero::after,
+.section-panel::before,
+.atlas-card::before {
   position: absolute;
   inset: 0;
   pointer-events: none;
   content: '';
+}
+
+.hero::before {
+  z-index: -3;
   background:
-    linear-gradient(90deg, transparent, rgba(202, 167, 106, 0.09), transparent),
-    radial-gradient(circle at 18% 14%, rgba(225, 194, 138, 0.12), transparent 18rem);
+    linear-gradient(115deg, transparent 0 49.6%, rgba(240, 207, 139, 0.16) 49.8% 50%, transparent 50.2%),
+    linear-gradient(29deg, transparent 0 56%, rgba(248, 236, 212, 0.075) 56.2% 56.4%, transparent 56.6%),
+    repeating-radial-gradient(circle at 68% 44%, transparent 0 78px, rgba(200, 161, 94, 0.08) 79px 80px),
+    repeating-linear-gradient(92deg, rgba(248, 236, 212, 0.035) 0 1px, transparent 1px 56px);
+  opacity: 0.92;
 }
 
-.hero {
-  min-height: 88svh;
-  display: grid;
-  align-content: end;
-  padding: clamp(32px, 6vw, 72px);
+.hero::after {
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 50% 108%, rgba(240, 207, 139, 0.15), transparent 34rem),
+    linear-gradient(180deg, rgba(5, 7, 11, 0.02), rgba(5, 7, 11, 0.5));
 }
 
-.atlas-orbit {
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 940px;
+}
+
+.hero-map {
   position: absolute;
-  top: 7%;
-  right: -35%;
-  width: min(92vw, 720px);
-  aspect-ratio: 1;
-  border: 1px solid rgba(202, 167, 106, 0.18);
-  border-radius: 999px;
-  opacity: 0.78;
-  background:
-    repeating-radial-gradient(circle, transparent 0 66px, rgba(202, 167, 106, 0.12) 67px 68px),
-    conic-gradient(from 130deg, transparent, rgba(202, 167, 106, 0.2), transparent 42%, rgba(246, 237, 220, 0.1), transparent 76%);
-  filter: drop-shadow(0 0 70px rgba(202, 167, 106, 0.16));
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
 }
+
+.lake {
+  position: absolute;
+  display: block;
+  border: 1px solid rgba(240, 207, 139, 0.18);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(248, 236, 212, 0.04), transparent 44%),
+    linear-gradient(135deg, rgba(55, 82, 105, 0.24), rgba(4, 7, 12, 0.08));
+  filter: blur(0.2px) drop-shadow(0 0 42px rgba(78, 111, 138, 0.22));
+  opacity: 0.78;
+}
+
+.lake-superior {
+  top: 12%;
+  right: 4%;
+  width: min(48vw, 470px);
+  height: 18%;
+  border-radius: 63% 37% 54% 46% / 44% 57% 43% 56%;
+  transform: rotate(-8deg);
+}
+
+.lake-michigan {
+  top: 28%;
+  right: 25%;
+  width: min(21vw, 190px);
+  height: 45%;
+  border-radius: 48% 52% 42% 58% / 63% 37% 63% 37%;
+  transform: rotate(14deg);
+}
+
+.lake-huron {
+  top: 30%;
+  right: 3%;
+  width: min(30vw, 280px);
+  height: 34%;
+  border-radius: 56% 44% 50% 50% / 48% 56% 44% 52%;
+  transform: rotate(-18deg);
+}
+
+.route {
+  position: absolute;
+  display: block;
+  height: 1px;
+  transform-origin: center;
+  background: linear-gradient(90deg, transparent, rgba(240, 207, 139, 0.68), transparent);
+  opacity: 0.66;
+}
+
+.route-one {
+  top: 33%;
+  left: 12%;
+  width: 64%;
+  transform: rotate(-18deg);
+}
+
+.route-two {
+  top: 57%;
+  left: 4%;
+  width: 80%;
+  transform: rotate(10deg);
+}
+
+.route-three {
+  top: 75%;
+  left: 18%;
+  width: 58%;
+  transform: rotate(-6deg);
+}
+
+.map-glow {
+  position: absolute;
+  right: 12%;
+  bottom: 8%;
+  width: min(48vw, 520px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(240, 207, 139, 0.14), transparent 62%);
+  filter: blur(14px);
+  animation: glow-pulse 7s ease-in-out infinite;
+}
+
+.constellation span,
+.fireflies span {
+  position: absolute;
+  display: block;
+  border-radius: 999px;
+  background: var(--gold-bright);
+  box-shadow: 0 0 16px rgba(240, 207, 139, 0.95), 0 0 44px rgba(240, 207, 139, 0.28);
+}
+
+.constellation {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.constellation::before,
+.constellation::after {
+  position: absolute;
+  content: '';
+  height: 1px;
+  background: linear-gradient(90deg, rgba(240, 207, 139, 0.02), rgba(240, 207, 139, 0.34), rgba(240, 207, 139, 0.02));
+  transform-origin: left;
+}
+
+.constellation::before {
+  top: 22%;
+  right: 17%;
+  width: 220px;
+  transform: rotate(24deg);
+}
+
+.constellation::after {
+  top: 31%;
+  right: 11%;
+  width: 170px;
+  transform: rotate(-34deg);
+}
+
+.star {
+  width: 5px;
+  height: 5px;
+  animation: star-twinkle 4.8s ease-in-out infinite;
+}
+
+.star-one { top: 20%; right: 35%; }
+.star-two { top: 28%; right: 20%; animation-delay: 0.7s; }
+.star-three { top: 18%; right: 11%; animation-delay: 1.4s; }
+.star-four { top: 37%; right: 26%; animation-delay: 2.1s; }
+
+.fireflies {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.fireflies span {
+  width: 4px;
+  height: 4px;
+  opacity: 0;
+  animation: firefly-drift 9s ease-in-out infinite;
+}
+
+.fireflies span:nth-child(1) { left: 13%; top: 62%; }
+.fireflies span:nth-child(2) { left: 34%; top: 30%; animation-delay: 1.3s; }
+.fireflies span:nth-child(3) { left: 72%; top: 68%; animation-delay: 2.6s; }
+.fireflies span:nth-child(4) { left: 82%; top: 42%; animation-delay: 4.1s; }
+.fireflies span:nth-child(5) { left: 50%; top: 84%; animation-delay: 5.4s; }
 
 .eyebrow {
   position: relative;
   margin: 0 0 14px;
   color: var(--gold-bright);
-  font-size: 0.73rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.19em;
   text-transform: uppercase;
 }
 
@@ -143,24 +320,35 @@ h3 {
   margin: 0;
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 600;
-  line-height: 0.95;
+  line-height: 0.9;
   text-wrap: balance;
 }
 
-h1 {
-  max-width: 850px;
-  font-size: clamp(4.25rem, 17vw, 9.4rem);
-  letter-spacing: -0.07em;
+.brand-title {
+  max-width: 980px;
+  color: #ffe8b4;
+  font-size: clamp(4.65rem, 17vw, 12.2rem);
+  letter-spacing: -0.085em;
+  text-shadow:
+    0 0 18px rgba(240, 207, 139, 0.28),
+    0 0 58px rgba(200, 161, 94, 0.22),
+    0 8px 50px rgba(0, 0, 0, 0.75);
+}
+
+.brand-title::after {
+  display: block;
+  width: min(520px, 70vw);
+  height: 1px;
+  margin-top: 18px;
+  background: linear-gradient(90deg, rgba(240, 207, 139, 0.9), rgba(240, 207, 139, 0.05));
+  content: '';
+  box-shadow: 0 0 24px rgba(240, 207, 139, 0.42);
 }
 
 h2 {
-  font-size: clamp(2.3rem, 9vw, 5.7rem);
-  letter-spacing: -0.055em;
-}
-
-h3 {
-  font-size: clamp(1.7rem, 7vw, 2.8rem);
-  letter-spacing: -0.035em;
+  color: var(--parchment);
+  font-size: clamp(2.6rem, 8vw, 5.8rem);
+  letter-spacing: -0.058em;
 }
 
 p {
@@ -169,11 +357,21 @@ p {
   line-height: 1.75;
 }
 
+.hero-subtitle {
+  max-width: 760px;
+  margin: 24px 0 0;
+  color: rgba(248, 236, 212, 0.95);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
 .hero-copy {
   max-width: 660px;
-  margin: 26px 0 0;
-  color: rgba(246, 237, 220, 0.84);
-  font-size: clamp(1.08rem, 2vw, 1.35rem);
+  margin: 18px 0 0;
+  color: rgba(248, 236, 212, 0.76);
+  font-size: clamp(1rem, 2vw, 1.22rem);
 }
 
 .hero-actions {
@@ -189,12 +387,12 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
+  min-height: 54px;
   border-radius: 999px;
-  padding: 0 24px;
+  padding: 0 25px;
   font-weight: 800;
   text-decoration: none;
-  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 
 .button:hover,
@@ -204,85 +402,95 @@ p {
 
 .button-primary,
 .signup-form button {
-  border: 1px solid rgba(225, 194, 138, 0.55);
-  background: linear-gradient(135deg, #e0bf84, #9d7941);
-  color: #11100e;
+  border: 1px solid rgba(240, 207, 139, 0.68);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 52%),
+    linear-gradient(135deg, #f0d293, #bb8e48 56%, #7e5b2d);
+  color: #15100a;
+  box-shadow: 0 16px 46px rgba(200, 161, 94, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.32);
 }
 
 .button-ghost {
-  border: 1px solid var(--line);
-  background: rgba(246, 237, 220, 0.04);
+  border: 1px solid rgba(248, 236, 212, 0.18);
+  background: rgba(248, 236, 212, 0.055);
   color: var(--parchment);
 }
 
-.intro-grid,
-.artifacts,
-.michigan,
-.early-access {
-  margin-top: 18px;
-}
-
-.intro-grid {
-  display: grid;
-  gap: 18px;
-}
-
-.content-card,
-.artifacts,
-.michigan,
-.early-access {
-  padding: clamp(26px, 5vw, 56px);
-}
-
-.content-card p:last-child,
-.section-heading p,
-.michigan p,
-.early-access p {
-  max-width: 690px;
-}
-
-.cartographer-card {
+.section-panel,
+.atlas-card {
+  border-radius: 28px;
   background:
-    linear-gradient(145deg, rgba(31, 28, 26, 0.92), rgba(8, 12, 18, 0.82)),
+    linear-gradient(145deg, rgba(16, 25, 38, 0.9), rgba(6, 10, 16, 0.82)),
     var(--midnight-soft);
 }
 
-.section-heading {
-  max-width: 780px;
-}
-
-.artifact-grid {
-  position: relative;
-  display: grid;
-  gap: 14px;
-  margin-top: 28px;
-}
-
-.artifact-card {
-  min-height: 250px;
-  border: 1px solid rgba(202, 167, 106, 0.18);
-  border-radius: 22px;
-  padding: 24px;
+.section-panel::before,
+.atlas-card::before {
   background:
-    linear-gradient(180deg, rgba(246, 237, 220, 0.055), rgba(246, 237, 220, 0.015)),
-    rgba(255, 255, 255, 0.02);
+    linear-gradient(90deg, transparent, rgba(240, 207, 139, 0.08), transparent),
+    radial-gradient(circle at 18% 12%, rgba(240, 207, 139, 0.1), transparent 17rem),
+    linear-gradient(rgba(248, 236, 212, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(248, 236, 212, 0.035) 1px, transparent 1px);
+  background-size: auto, auto, 46px 46px, 46px 46px;
 }
 
-.artifact-card span,
-.coordinate,
-.signup-form small {
-  color: rgba(225, 194, 138, 0.76);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
+.prologue,
+.michigan,
+.early-access {
+  margin-top: 20px;
+  padding: clamp(28px, 5vw, 58px);
 }
 
-.artifact-card h3 {
-  margin-top: 44px;
+.prologue {
+  display: grid;
+  gap: 22px;
+  align-items: end;
 }
 
-.artifact-card p {
+.prologue p:last-child,
+.michigan-copy p,
+.early-access > p {
+  max-width: 710px;
+}
+
+.atlas-card-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.atlas-card {
+  min-height: 360px;
+  padding: clamp(24px, 4vw, 38px);
+}
+
+.atlas-card:nth-child(2) {
+  background:
+    linear-gradient(145deg, rgba(31, 27, 23, 0.92), rgba(7, 11, 17, 0.84)),
+    var(--midnight-soft);
+}
+
+.card-plate {
+  position: absolute;
+  right: -48px;
+  bottom: -62px;
+  width: 220px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(240, 207, 139, 0.22);
+  border-radius: 999px;
+  background:
+    repeating-radial-gradient(circle, transparent 0 24px, rgba(240, 207, 139, 0.1) 25px 26px),
+    conic-gradient(from 90deg, rgba(240, 207, 139, 0.18), transparent 24%, rgba(248, 236, 212, 0.08), transparent 62%, rgba(240, 207, 139, 0.16));
+  opacity: 0.86;
+}
+
+.atlas-card h2 {
+  margin-top: 52px;
+  font-size: clamp(2.7rem, 7vw, 4.7rem);
+}
+
+.atlas-card p:last-child {
+  max-width: 480px;
   margin-bottom: 0;
 }
 
@@ -291,30 +499,83 @@ p {
   gap: 28px;
 }
 
+.label-row {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.label-row span,
+.coordinate,
+.map-title,
+.signup-form small {
+  color: rgba(240, 207, 139, 0.8);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.label-row span {
+  border: 1px solid rgba(240, 207, 139, 0.18);
+  border-radius: 999px;
+  padding: 9px 12px;
+  background: rgba(248, 236, 212, 0.045);
+}
+
 .map-card {
   position: relative;
-  min-height: 320px;
+  min-height: 360px;
   overflow: hidden;
-  border: 1px solid rgba(202, 167, 106, 0.2);
-  border-radius: 24px;
+  border: 1px solid rgba(200, 161, 94, 0.24);
+  border-radius: 26px;
   background:
-    linear-gradient(120deg, transparent 0 48%, rgba(202, 167, 106, 0.2) 49% 50%, transparent 51%),
-    linear-gradient(35deg, transparent 0 54%, rgba(246, 237, 220, 0.08) 55% 56%, transparent 57%),
-    radial-gradient(circle at 54% 48%, rgba(202, 167, 106, 0.26), transparent 10rem),
-    #0b111a;
+    radial-gradient(circle at 52% 46%, rgba(240, 207, 139, 0.17), transparent 10rem),
+    linear-gradient(120deg, transparent 0 48%, rgba(200, 161, 94, 0.18) 49% 50%, transparent 51%),
+    linear-gradient(35deg, transparent 0 54%, rgba(248, 236, 212, 0.08) 55% 56%, transparent 57%),
+    repeating-linear-gradient(0deg, rgba(248, 236, 212, 0.045) 0 1px, transparent 1px 44px),
+    repeating-linear-gradient(90deg, rgba(248, 236, 212, 0.038) 0 1px, transparent 1px 44px),
+    #08111b;
+}
+
+.map-card::before,
+.map-card::after {
+  position: absolute;
+  pointer-events: none;
+  content: '';
 }
 
 .map-card::before {
-  position: absolute;
-  inset: 18%;
-  border: 1px solid rgba(202, 167, 106, 0.26);
+  inset: 14%;
+  border: 1px solid rgba(200, 161, 94, 0.28);
   border-radius: 48% 52% 40% 60% / 55% 45% 55% 45%;
-  content: '';
   transform: rotate(-18deg);
 }
 
-.coordinate {
+.map-card::after {
+  inset: -30%;
+  background: radial-gradient(circle, transparent 0 58%, rgba(5, 7, 11, 0.72) 79%);
+}
+
+.michigan-shape {
   position: absolute;
+  top: 22%;
+  left: 43%;
+  width: 21%;
+  height: 47%;
+  border: 1px solid rgba(240, 207, 139, 0.34);
+  border-radius: 48% 52% 42% 58% / 63% 37% 63% 37%;
+  background: linear-gradient(135deg, rgba(240, 207, 139, 0.17), rgba(248, 236, 212, 0.03));
+  transform: rotate(13deg);
+  filter: drop-shadow(0 0 34px rgba(240, 207, 139, 0.22));
+}
+
+.coordinate,
+.map-title {
+  position: absolute;
+  z-index: 1;
 }
 
 .coordinate-one {
@@ -327,22 +588,32 @@ p {
   bottom: 24px;
 }
 
+.map-title {
+  right: 24px;
+  top: 24px;
+  color: rgba(248, 236, 212, 0.55);
+}
+
 .map-pin {
   position: absolute;
-  top: 44%;
-  left: 52%;
-  width: 18px;
+  z-index: 1;
+  width: 16px;
   aspect-ratio: 1;
   border-radius: 999px;
   background: var(--gold-bright);
-  box-shadow: 0 0 0 12px rgba(202, 167, 106, 0.15), 0 0 48px rgba(225, 194, 138, 0.9);
+  box-shadow: 0 0 0 10px rgba(200, 161, 94, 0.13), 0 0 42px rgba(240, 207, 139, 0.9);
+  animation: glow-pulse 4.5s ease-in-out infinite;
 }
+
+.pin-one { top: 44%; left: 52%; }
+.pin-two { top: 33%; left: 58%; animation-delay: 1.3s; }
 
 .map-route {
   position: absolute;
-  inset: 33% 18% auto;
+  z-index: 1;
+  inset: 35% 18% auto;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(225, 194, 138, 0.9), transparent);
+  background: linear-gradient(90deg, transparent, rgba(240, 207, 139, 0.85), transparent);
   transform: rotate(-20deg);
 }
 
@@ -350,17 +621,36 @@ p {
   margin-bottom: 0;
 }
 
+.seal {
+  position: absolute;
+  right: clamp(24px, 5vw, 58px);
+  top: clamp(24px, 5vw, 58px);
+  display: none;
+  place-items: center;
+  width: 98px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(240, 207, 139, 0.28);
+  border-radius: 999px;
+  color: rgba(240, 207, 139, 0.78);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.2rem;
+  letter-spacing: -0.05em;
+  background:
+    repeating-radial-gradient(circle, transparent 0 16px, rgba(240, 207, 139, 0.09) 17px 18px),
+    rgba(248, 236, 212, 0.035);
+}
+
 .signup-form {
   position: relative;
   display: grid;
   gap: 12px;
-  max-width: 720px;
+  max-width: 760px;
   margin-top: 28px;
 }
 
 .signup-form label {
   color: var(--parchment);
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .form-row {
@@ -370,71 +660,165 @@ p {
 
 .signup-form input {
   width: 100%;
-  min-height: 56px;
-  border: 1px solid rgba(202, 167, 106, 0.28);
+  min-height: 58px;
+  border: 1px solid rgba(200, 161, 94, 0.32);
   border-radius: 999px;
   padding: 0 20px;
   outline: none;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.055);
   color: var(--parchment);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .signup-form input:focus {
   border-color: var(--gold-bright);
-  box-shadow: 0 0 0 4px rgba(202, 167, 106, 0.16);
+  box-shadow: 0 0 0 4px rgba(200, 161, 94, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .signup-form input::placeholder {
-  color: rgba(246, 237, 220, 0.42);
+  color: rgba(248, 236, 212, 0.42);
 }
 
 .signup-form button {
   cursor: pointer;
 }
 
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.035);
+  }
+}
+
+@keyframes star-twinkle {
+  0%, 100% {
+    opacity: 0.38;
+    transform: scale(0.82);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.22);
+  }
+}
+
+@keyframes firefly-drift {
+  0%, 100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.8);
+  }
+  24%, 64% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate3d(18px, -24px, 0) scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 @media (min-width: 700px) {
   .site-shell {
-    width: min(1180px, calc(100% - 56px));
+    width: min(1200px, calc(100% - 56px));
     padding: 48px 0 72px;
   }
 
-  .hero-actions,
+  .hero-actions {
+    flex-direction: row;
+    align-items: center;
+  }
+
   .form-row {
     grid-template-columns: max-content max-content;
   }
 
-  .intro-grid,
+  .prologue,
   .michigan {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.9fr 1.1fr;
   }
 
-  .artifact-grid {
+  .atlas-card-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .seal {
+    display: grid;
   }
 }
 
 @media (min-width: 1040px) {
   .hero {
-    min-height: 760px;
+    min-height: 820px;
   }
 
-  .intro-grid,
-  .artifacts,
+  .prologue,
+  .atlas-card-grid,
   .michigan,
   .early-access {
-    margin-top: 22px;
+    margin-top: 24px;
   }
 
-  .artifact-card {
-    min-height: 320px;
-  }
-
-  .michigan {
-    grid-template-columns: 0.9fr 1.1fr;
-    align-items: stretch;
+  .atlas-card:nth-child(2) {
+    transform: translateY(22px);
   }
 
   .map-card {
-    min-height: 440px;
+    min-height: 470px;
+  }
+}
+
+@media (max-width: 620px) {
+  .site-shell {
+    width: min(100% - 24px, 1200px);
+    padding-top: 12px;
+  }
+
+  .hero {
+    min-height: 88svh;
+    border-radius: 24px;
+  }
+
+  .brand-title {
+    font-size: clamp(4.1rem, 22vw, 6.5rem);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.75rem, 10vw, 2.45rem);
+  }
+
+  .lake-superior {
+    right: -34%;
+    width: 112vw;
+  }
+
+  .lake-michigan {
+    right: 20%;
+    width: 38vw;
+  }
+
+  .lake-huron {
+    right: -24%;
+    width: 62vw;
+  }
+
+  .constellation::before,
+  .constellation::after {
+    opacity: 0.48;
+  }
+
+  .atlas-card {
+    min-height: 300px;
   }
 }
