@@ -2,116 +2,135 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
-const artifactCards = [
+const atlasCards = [
   {
-    label: 'Traditions',
-    title: 'Inherited rituals',
-    copy: 'Trace the gestures, recipes, songs, and gatherings that travel across households and generations.',
+    eyebrow: 'Field Guide I',
+    title: 'The Cartographer',
+    copy: 'A quiet editorial compass for turning scattered lore, routes, recipes, and recollections into coordinates future gatherings can follow.',
   },
   {
-    label: 'Discoveries',
-    title: 'Found moments',
-    copy: 'Collect the unexpected places, stories, and local details that make a celebration feel grounded.',
+    eyebrow: 'Field Guide II',
+    title: 'Artifacts',
+    copy: 'Heirloom menus, festival tokens, porch-light songs, handwritten notes, and the objects people keep after the last candle burns low.',
   },
   {
-    label: 'Memories',
-    title: 'Living records',
-    copy: 'Preserve the personal notes and sensory fragments that turn an event into a cultural artifact.',
+    eyebrow: 'Field Guide III',
+    title: 'Michigan Launch',
+    copy: 'Our first map opens beneath Great Lakes night skies, tracing town rituals, lake-season traditions, winter tables, craft, food, and memory.',
   },
 ];
+
+const mapLabels = ['Harbor lights', 'Family tables', 'Winter rites', 'County fairs'];
 
 function App() {
   return (
     <main className="site-shell">
-      <section className="hero section-panel" aria-labelledby="hero-title">
-        <div className="atlas-orbit" aria-hidden="true" />
-        <p className="eyebrow">TheCelebrationAtlas.com</p>
-        <h1 id="hero-title">A living atlas of how we gather, remember, and celebrate.</h1>
-        <p className="hero-copy">
-          Celebration Atlas is a living system of cultural artifacts built from celebrations,
-          traditions, discoveries, and memories.
-        </p>
-        <div className="hero-actions">
-          <a href="#early-access" className="button button-primary">Join early access</a>
-          <a href="#michigan" className="button button-ghost">Explore the launch map</a>
+      <section className="hero" aria-labelledby="hero-title">
+        <div className="hero-map" aria-hidden="true">
+          <span className="lake lake-superior" />
+          <span className="lake lake-michigan" />
+          <span className="lake lake-huron" />
+          <span className="route route-one" />
+          <span className="route route-two" />
+          <span className="route route-three" />
+          <span className="map-glow" />
+        </div>
+        <div className="constellation" aria-hidden="true">
+          <span className="star star-one" />
+          <span className="star star-two" />
+          <span className="star star-three" />
+          <span className="star star-four" />
+        </div>
+        <div className="fireflies" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+
+        <div className="hero-content">
+          <p className="eyebrow">TheCelebrationAtlas.com</p>
+          <h1 id="hero-title" className="brand-title">Celebration Atlas</h1>
+          <p className="hero-subtitle">
+            A living atlas of celebrations, traditions, discoveries, and memories.
+          </p>
+          <p className="hero-copy">
+            An enchanted Michigan-first archive for the rituals, keepsakes, places, and
+            personal legends that make gathering feel storied, local, and alive.
+          </p>
+          <div className="hero-actions">
+            <a href="#early-access" className="button button-primary">Join Early Access</a>
+            <a href="#atlas-cards" className="button button-ghost">Open the field notes</a>
+          </div>
         </div>
       </section>
 
-      <section className="intro-grid" aria-label="Celebration Atlas overview">
-        <article className="section-panel content-card" id="what-is">
-          <p className="eyebrow">What is Celebration Atlas?</p>
-          <h2>A practical field guide for meaningful occasions.</h2>
-          <p>
-            Celebration Atlas is being built as a cinematic, searchable home for cultural
-            context: the objects on the table, the routes people travel, the local lore, and
-            the small rituals that make a gathering unmistakably yours.
-          </p>
-        </article>
-
-        <article className="section-panel content-card cartographer-card" id="cartographer">
-          <p className="eyebrow">The Cartographer</p>
-          <h2>Guided by human stories, organized like a map.</h2>
-          <p>
-            The Cartographer is the editorial compass of Celebration Atlas: part researcher,
-            part archivist, part host. It helps transform scattered memories into useful,
-            beautiful coordinates for future celebrations.
-          </p>
-        </article>
-      </section>
-
-      <section className="section-panel artifacts" id="artifacts" aria-labelledby="artifacts-title">
-        <div className="section-heading">
-          <p className="eyebrow">Artifacts</p>
-          <h2 id="artifacts-title">Every celebration leaves a trail.</h2>
-          <p>
-            We are cataloging the traces that make culture visible, from heirloom recipes to
-            neighborhood parades and the quiet objects people keep long after the lights go down.
-          </p>
-        </div>
-        <div className="artifact-grid">
-          {artifactCards.map((card) => (
-            <article className="artifact-card" key={card.label}>
-              <span>{card.label}</span>
-              <h3>{card.title}</h3>
-              <p>{card.copy}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section-panel michigan" id="michigan" aria-labelledby="michigan-title">
+      <section className="section-panel prologue" aria-label="Celebration Atlas introduction">
         <div>
-          <p className="eyebrow">Michigan Launch</p>
-          <h2 id="michigan-title">Beginning where lake light meets local memory.</h2>
+          <p className="eyebrow">Dark atlas / living archive</p>
+          <h2>Where memory becomes a map.</h2>
+        </div>
+        <p>
+          Celebration Atlas is being shaped as a cinematic home for cultural context: the
+          lake-road routes, seasonal gatherings, inherited recipes, local discoveries, and
+          tactile artifacts that turn an occasion into a place you can return to.
+        </p>
+      </section>
+
+      <section className="atlas-card-grid" id="atlas-cards" aria-label="Celebration Atlas features">
+        {atlasCards.map((card) => (
+          <article className="atlas-card" key={card.title}>
+            <div className="card-plate" aria-hidden="true" />
+            <p className="eyebrow">{card.eyebrow}</p>
+            <h2>{card.title}</h2>
+            <p>{card.copy}</p>
+          </article>
+        ))}
+      </section>
+
+      <section className="section-panel michigan" aria-labelledby="michigan-title">
+        <div className="michigan-copy">
+          <p className="eyebrow">Michigan night map</p>
+          <h2 id="michigan-title">Launching under Great Lakes stars.</h2>
           <p>
-            Our first coordinates are rooted in Michigan: intimate town traditions, seasonal
-            festivals, family gatherings, and the cultural texture of communities shaped by water,
-            winter, migration, craft, and food.
+            The first coordinates begin in Michigan, where lake light, immigrant tables,
+            county fairgrounds, winter lanterns, harvest weekends, and neighborhood lore
+            create a constellation of celebrations worth preserving.
           </p>
+          <div className="label-row" aria-label="Launch themes">
+            {mapLabels.map((label) => (
+              <span key={label}>{label}</span>
+            ))}
+          </div>
         </div>
         <div className="map-card" aria-label="Stylized Michigan launch coordinates">
           <span className="coordinate coordinate-one">44.3148° N</span>
           <span className="coordinate coordinate-two">85.6024° W</span>
-          <span className="map-pin" />
+          <span className="map-title">Michigan Launch</span>
+          <span className="michigan-shape" />
+          <span className="map-pin pin-one" />
+          <span className="map-pin pin-two" />
           <span className="map-route" />
         </div>
       </section>
 
       <section className="section-panel early-access" id="early-access" aria-labelledby="early-access-title">
+        <div className="seal" aria-hidden="true">CA</div>
         <p className="eyebrow">Join Early Access</p>
         <h2 id="early-access-title">Be first to enter the atlas.</h2>
         <p>
           Sign up for launch notes, early previews, and invitations to help shape the first
-          Celebration Atlas artifact collections. No backend is connected yet; this form is a
-          placeholder for the upcoming release.
+          artifact collections. This email form is a placeholder only and is not connected
+          to a backend yet.
         </p>
         <form className="signup-form" onSubmit={(event: React.FormEvent<HTMLFormElement>) => event.preventDefault()}>
           <label htmlFor="email">Email address</label>
           <div className="form-row">
             <input id="email" name="email" type="email" placeholder="you@example.com" autoComplete="email" />
-            <button type="submit">Reserve my place</button>
+            <button type="submit">Join Early Access</button>
           </div>
-          <small>Coming soon. Your email will not be submitted from this temporary page.</small>
+          <small>Placeholder form for the upcoming release. Nothing is submitted from this page.</small>
         </form>
       </section>
     </main>
